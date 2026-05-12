@@ -1,5 +1,7 @@
 package org.example;
 
+import java.util.UUID;
+
 public class AccountService {
     private Account currentAccount;
     private final AccountRepository repository;
@@ -9,7 +11,7 @@ public class AccountService {
     }
 
     public boolean login(String username, String password) {
-        return repository.findAccountByName(username)
+        return repository.findByName(username)
                 .filter(acc -> acc.getPassword().equals(password))
                 .map(acc -> {
                     currentAccount = acc;
@@ -23,8 +25,16 @@ public class AccountService {
         Account acc = new Account(username, password, 0);
         currentAccount = acc;
 
-        repository.addAccount(acc);
+        repository.save(acc);
         return true;
+    }
+
+    public void deposit(UUID id, double amount) {
+
+    }
+
+    public void withdraw(UUID id, double amount) {
+
     }
 
     private boolean canCreateAccount(String username, String password) {

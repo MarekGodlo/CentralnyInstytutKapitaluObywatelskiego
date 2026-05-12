@@ -8,17 +8,17 @@ import java.util.UUID;
 public class AccountRepository {
     private final List<Account> accounts = new ArrayList<>();
 
-    public void addAccount(Account account) {
+    public void save(Account account) {
         accounts.add(account);
     }
 
-    public Optional<Account> findAccountById(UUID id) {
+    public Optional<Account> findById(UUID id) {
         return accounts.stream()
                 .filter(account -> account.getId().equals(id))
                 .findFirst();
     }
 
-    public Optional<Account> findAccountByName(String name) {
+    public Optional<Account> findByName(String name) {
         return accounts.stream()
                 .filter(account -> account.getUsername().equals(name))
                 .findFirst();

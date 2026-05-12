@@ -29,12 +29,10 @@ public class AccountService {
         return true;
     }
 
-    public void deposit(UUID id, double amount) {
 
-    }
-
-    public void withdraw(UUID id, double amount) {
-
+    public Account findAccountById(UUID id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new AccountNotFoundException(id.toString()));
     }
 
     private boolean canCreateAccount(String username, String password) {

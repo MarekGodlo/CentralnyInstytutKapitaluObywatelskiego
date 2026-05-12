@@ -9,7 +9,10 @@ public class AccountRepository {
     private final List<Account> accounts = new ArrayList<>();
 
     public void save(Account account) {
-        accounts.add(account);
+        // FIXME: It's temporary solution
+        if (!accounts.contains(account)) {
+            accounts.add(account);
+        }
     }
 
     public Optional<Account> findById(UUID id) {

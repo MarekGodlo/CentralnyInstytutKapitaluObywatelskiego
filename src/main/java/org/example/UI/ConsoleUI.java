@@ -1,4 +1,6 @@
-package org.example;
+package org.example.UI;
+
+import org.example.Service.AccountService;
 
 import java.util.Scanner;
 
@@ -12,9 +14,18 @@ public class ConsoleUI {
     }
 
     public void start() {
+        boolean isActive = true;
+
+        while (isActive) {
+            displayLoginMenu();
+        }
+    }
+
+    private void displayLoginMenu() {
         System.out.println("Wybierz opcje");
         System.out.println("1. zaloguj się");
         System.out.println("2. zarejestruj się");
+
 
         int choice = Integer.parseInt(scanner.nextLine());
 
@@ -25,6 +36,10 @@ public class ConsoleUI {
                 System.out.println("Nieznana komenda");
             }
         }
+    }
+
+    private void displayMainMenu() {
+
     }
 
     private void handleLogin() {

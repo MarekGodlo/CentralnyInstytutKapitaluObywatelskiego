@@ -1,4 +1,4 @@
-package org.example;
+package org.example.Exception;
 
 public class AccountNotFoundException extends RuntimeException {
     public AccountNotFoundException(String message) {

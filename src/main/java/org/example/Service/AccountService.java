@@ -1,4 +1,8 @@
-package org.example;
+package org.example.Service;
+
+import org.example.Repository.AccountRepository;
+import org.example.Exception.AccountNotFoundException;
+import org.example.Model.Account;
 
 import java.util.UUID;
 

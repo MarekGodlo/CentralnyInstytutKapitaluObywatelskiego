@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.Repository.AccountRepository;
+import org.example.Service.AccountService;
+import org.example.UI.ConsoleUI;
+
 import java.util.Scanner;
 
 public class Main {

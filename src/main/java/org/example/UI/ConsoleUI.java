@@ -1,5 +1,7 @@
 package org.example.UI;
 
+import org.example.Exception.AuthenticationException;
+import org.example.Exception.RegistrationException;
 import org.example.Service.AccountService;
 
 import java.util.Scanner;
@@ -14,59 +16,92 @@ public class ConsoleUI {
     }
 
     public void start() {
-        boolean isActive = true;
+        boolean isRunning = true;
 
-        while (isActive) {
-            displayLoginMenu();
-        }
-    }
+        System.out.println("=================== Bank ===================");
 
-    private void displayLoginMenu() {
-        System.out.println("Wybierz opcje");
-        System.out.println("1. zaloguj się");
-        System.out.println("2. zarejestruj się");
+        while (isRunning) {
+            System.out.println();
 
+            System.out.println("Wybierz opcję");
+            System.out.println("1. Zaloguj się");
+            System.out.println("2. Zarejestruj się");
+            System.out.println("3. Wyjdź");
 
-        int choice = Integer.parseInt(scanner.nextLine());
+            String choice = scanner.nextLine();
 
-        switch (choice) {
-            case 1 -> handleLogin();
-            case 2 -> handleRegistration();
-            default -> {
-                System.out.println("Nieznana komenda");
+            switch (choice) {
+                case "1" -> handleLogin();
+                case "2" -> handleRegistration();
+                case "3" -> isRunning = false;
+                default -> {
+                    System.out.println("Nieznana komenda");
+                }
             }
         }
     }
 
-    private void displayMainMenu() {
-
-    }
-
     private void handleLogin() {
-        System.out.println("Podaj nazwe uzytkownika");
+        System.out.println();
+
+        System.out.println("Podaj nazwę użytkownika");
         String username = scanner.nextLine();
 
-        System.out.println("Podaj haslo uzytkownika");
+        System.out.println("Podaj hasło użytkownika");
         String password = scanner.nextLine();
 
-        if (accountService.login(username, password)) {
-            System.out.println("Pomyslnie zalogowano");
-        } else {
-            System.out.println("Niepoprawny login lub haslo");
+        try {
+            accountService.login(username, password);
+            System.out.println("Pomyślnie zalogowano");
+
+            displayCustomerMenu();
+
+            // logout
+        } catch (AuthenticationException e){
+            System.out.println(e.getMessage());
         }
     }
 
     private void handleRegistration() {
-        System.out.println("Podaj nazwe uzytkownika");
+        System.out.println();
+
+        System.out.println("Podaj nazwę użytkownika");
         String username = scanner.nextLine();
 
-        System.out.println("Podaj haslo uzytkownika");
+        System.out.println("Podaj hasło użytkownika");
         String password = scanner.nextLine();
 
-        if (accountService.register(username, password)) {
-            System.out.println("Pomyslnie zarejestrowano");
-        } else {
-            System.out.println("Rejestracja sie nie udala");
+        try {
+            accountService.register(username, password);
+            System.out.println("Pomyślnie zarejestrowano");
+
+            displayCustomerMenu();
+
+            // logout
+        } catch (RegistrationException e){
+            System.out.println(e.getMessage());
+        }
+    }
+
+    private void displayCustomerMenu() {
+        boolean isLoggedIn = true;
+
+        while (isLoggedIn) {
+            System.out.println();
+
+            System.out.println("Wybierz opcje");
+            System.out.println("1. Zrób przelew");
+            System.out.println("2. Wyjdź");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1" -> System.out.println("tranfer");
+                case "2" -> isLoggedIn = false;
+                default -> {
+                    System.out.println("Nieznana komenda");
+                }
+            }
         }
     }
 }

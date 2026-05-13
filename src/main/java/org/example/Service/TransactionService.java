@@ -33,7 +33,6 @@ public class TransactionService {
 
         repository.save(new Transaction(senderId, receiverId, amount));
 
-
         // save to db logic
     }
 }

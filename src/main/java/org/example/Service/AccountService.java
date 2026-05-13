@@ -42,7 +42,7 @@ public class AccountService {
     private void validateRegistrationData(String username, String password) {
         if (username.isBlank()) throw new RegistrationException("Niepoprawna nazwa użytkownika");
 
-        if (password.isBlank() || password.length() <= 6) throw new RegistrationException("Niepoprawne hasło (min. długosc 6 znaków");
+        if (password.isBlank() || password.length() < 6) throw new RegistrationException("Niepoprawne hasło (min. 6 znaków");
 
         if (repository.existsByName(username)) throw new RegistrationException("Konto już istnieje");
     }

@@ -1,5 +1,7 @@
 package org.example.Service;
 
+import org.example.Exception.AuthenticationException;
+import org.example.Exception.RegistrationException;
 import org.example.Repository.AccountRepository;
 import org.example.Exception.AccountNotFoundException;
 import org.example.Model.Account;
@@ -14,36 +16,34 @@ public class AccountService {
         this.repository = repository;
     }
 
-    public boolean login(String username, String password) {
-        return repository.findByName(username)
-                .filter(acc -> acc.getPassword().equals(password))
-                .map(acc -> {
-                    currentAccount = acc;
-                    return true;
-                }).orElse(false);
-    }
-
-    public boolean register(String username, String password) {
-        if (!canCreateAccount(username, password)) return false;
-
-        Account acc = new Account(username, password, 0);
-        currentAccount = acc;
-
-        repository.save(acc);
-        return true;
-    }
-
-
     public Account findAccountById(UUID id) {
         return repository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException(id.toString()));
     }
 
-    private boolean canCreateAccount(String username, String password) {
-        if (username.isBlank()) return false;
+    public void login(String username, String password) {
+        Account acc = repository.findByName(username)
+                .orElseThrow(() -> new AuthenticationException("Niepoprawna nazwa użytkownika lub hasło"));
 
-        if (password.isBlank() || password.length() <= 6) return false;
+        if (!acc.getPassword().equals(password)) throw new AuthenticationException("Niepoprawna nazwa użytkownika lub hasło");
 
-        return !repository.existsByName(username);
+        currentAccount = acc;
+    }
+
+    public void register(String username, String password) {
+        validateRegistrationData(username, password);
+
+        Account acc = new Account(username, password, 0);
+        currentAccount = acc;
+
+        repository.save(acc);
+    }
+
+    private void validateRegistrationData(String username, String password) {
+        if (username.isBlank()) throw new RegistrationException("Niepoprawna nazwa użytkownika");
+
+        if (password.isBlank() || password.length() <= 6) throw new RegistrationException("Niepoprawne hasło (min. długosc 6 znaków");
+
+        if (repository.existsByName(username)) throw new RegistrationException("Konto już istnieje");
     }
 }

@@ -22,10 +22,10 @@ public class TransactionService {
         Account sender = accountService.findAccountById(senderId);
         Account receiver = accountService.findAccountById(receiverId);
 
-        if (amount < 0) throw new IllegalArgumentException("Cannot transfer negative amount");
+        if (amount < 0) throw new IllegalArgumentException("Niepoprawna wartość kwoty");
 
         if (sender.getBalance() < amount) {
-            throw new NotEnoughBalanceException("Not enough balance on account");
+            throw new NotEnoughBalanceException("Brak wystraczającej ilości środków na koncie");
         }
 
         sender.withdraw(amount);

@@ -6,12 +6,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TransactionRepository {
-    private final List<Transaction> transcactions = new ArrayList<>();
+    private final List<Transaction> transactions = new ArrayList<>();
 
     public void save(Transaction transcaction) {
         // FIXME: It's temporary solution too
-        if (!transcactions.contains(transcaction)) {
-            transcactions.add(transcaction);
+        if (!transactions.contains(transcaction)) {
+            transactions.add(transcaction);
         }
     }
 }

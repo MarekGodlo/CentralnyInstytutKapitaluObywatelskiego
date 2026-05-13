@@ -18,7 +18,12 @@ public class AccountService {
 
     public Account findAccountById(UUID id) {
         return repository.findById(id)
-                .orElseThrow(() -> new AccountNotFoundException(id.toString()));
+                .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));
+    }
+
+    public Account findAccountByUsername(String name) {
+        return repository.findByName(name)
+                .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));
     }
 
     public void login(String username, String password) {
@@ -39,11 +44,19 @@ public class AccountService {
         repository.save(acc);
     }
 
+    public void logout() {
+        currentAccount = null;
+    }
+
     private void validateRegistrationData(String username, String password) {
         if (username.isBlank()) throw new RegistrationException("Niepoprawna nazwa użytkownika");
 
         if (password.isBlank() || password.length() < 6) throw new RegistrationException("Niepoprawne hasło (min. 6 znaków");
 
         if (repository.existsByName(username)) throw new RegistrationException("Konto już istnieje");
+    }
+
+    public Account getCurrentAccount() {
+        return currentAccount;
     }
 }

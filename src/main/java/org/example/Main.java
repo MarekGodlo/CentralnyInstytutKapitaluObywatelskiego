@@ -1,12 +1,10 @@
 package org.example;
 
-import org.example.Model.Account;
 import org.example.Repository.AccountRepository;
 import org.example.Repository.TransactionRepository;
 import org.example.Service.AccountService;
 import org.example.Service.TransactionService;
 import org.example.UI.ConsoleUI;
-import org.example.Utils.Cryptography;
 
 import java.util.Scanner;
 

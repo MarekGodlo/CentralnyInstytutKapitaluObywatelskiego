@@ -106,11 +106,8 @@ public class ConsoleUI {
         double amount = scanner.nextDouble();
         scanner.nextLine();
 
-        // FIXME: Move transfer logic to TransactionService, UI shouldn't handle business logic
         try {
-            Account acc = accountService.findAccountByUsername(username);
-
-            transactionService.transfer(accountService.getCurrentAccount().getId(), acc.getId(), amount);
+            transactionService.createTransaction(username, amount);
             System.out.println("Pomyślnie wysłano przelew");
         } catch (AccountNotFoundException | NotEnoughBalanceException | IllegalArgumentException e) {
             System.out.println(e.getMessage());

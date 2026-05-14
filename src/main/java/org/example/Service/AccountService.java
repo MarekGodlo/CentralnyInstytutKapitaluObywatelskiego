@@ -7,7 +7,6 @@ import org.example.Exception.AccountNotFoundException;
 import org.example.Model.Account;
 import org.example.Utils.Cryptography;
 
-import java.sql.SQLOutput;
 import java.util.UUID;
 
 public class AccountService {

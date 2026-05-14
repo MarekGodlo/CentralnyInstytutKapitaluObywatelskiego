@@ -4,6 +4,7 @@ package org.example.Service;
 import org.example.Exception.NotEnoughBalanceException;
 import org.example.Model.Account;
 import org.example.Model.Transaction;
+import org.example.Repository.AccountRepository;
 import org.example.Repository.TransactionRepository;
 
 import java.util.UUID;
@@ -17,8 +18,14 @@ public class TransactionService {
         this.accountService = accountService;
     }
 
-    // TODO: handle exceptions and connect with UI
-    public void transfer(UUID senderId, UUID receiverId, double amount) {
+    public void createTransaction(String receiverName, double amount) {
+        Account acc = accountService.findAccountByUsername(receiverName);
+        Account currentAcc = accountService.getCurrentAccount();
+
+        transfer(currentAcc.getId(), acc.getId(), amount);
+    }
+
+    private void transfer(UUID senderId, UUID receiverId, double amount) {
         Account sender = accountService.findAccountById(senderId);
         Account receiver = accountService.findAccountById(receiverId);
 

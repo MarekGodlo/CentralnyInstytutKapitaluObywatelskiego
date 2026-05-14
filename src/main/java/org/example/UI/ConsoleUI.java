@@ -125,13 +125,15 @@ public class ConsoleUI {
 
             System.out.println("Wybierz opcje");
             System.out.println("1. Zrób przelew");
-            System.out.println("2. Wyloguj się");
+            System.out.println("2. Zobacz stan konta");
+            System.out.println("3. Wyloguj się");
 
             String choice = scanner.nextLine();
 
             switch (choice) {
                 case "1" -> handleTransfer();
-                case "2" -> isLoggedIn = false;
+                case "2" -> accountService.showBalance();
+                case "3" -> isLoggedIn = false;
                 default -> {
                     System.out.println("Nieznana komenda");
                 }

@@ -21,6 +21,10 @@ public class AccountService {
                 .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));
     }
 
+    public void showBalance() {
+        System.out.println("Stan konta: " +  currentAccount.getBalance());
+    }
+
     public Account findAccountByUsername(String name) {
         return repository.findByName(name)
                 .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));

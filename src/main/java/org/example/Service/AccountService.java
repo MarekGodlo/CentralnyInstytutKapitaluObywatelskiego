@@ -23,9 +23,9 @@ public class AccountService {
                 .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));
     }
 
-    public void showBalance() {
-        System.out.println("Stan konta: " +  currentAccount.getBalance());
-    }
+//    public void showBalance() {
+//        System.out.println("Stan konta: " +  currentAccount.getBalance());
+//    }
 
     public Account findAccountByUsername(String name) {
         return repository.findByName(name)
@@ -45,7 +45,7 @@ public class AccountService {
 
     public void register(String username, String password) {
         validateRegistrationData(username, password);
-        Account acc = new Account(username, crypto.hash(password), 0);
+        Account acc = new Account(username, crypto.hash(password), 0,0);
         currentAccount = acc;
 
         repository.save(acc);

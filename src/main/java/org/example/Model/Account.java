@@ -3,16 +3,18 @@ package org.example.Model;
 import java.util.UUID;
 
 public class Account {
-    private UUID id;
-    private String username;
-    private String password;
+    private final UUID id;
+    private final String username;
+    private final String password;
     private double balance;
+    private double debt;
 
-    public Account(String userName, String password, double balance) {
+    public Account(String userName, String password, double balance, double debt) {
         id = UUID.randomUUID();
         this.username = userName;
         this.password = password;
         this.balance = balance;
+        this.debt = debt;
     }
 
     public void deposit(double amount) {
@@ -21,6 +23,10 @@ public class Account {
 
     public void withdraw(double amount) {
         balance -= amount;
+    }
+
+    public void increaseDebt(double debtValue) {
+        debt += debtValue;
     }
 
     public UUID getId() {
@@ -37,5 +43,9 @@ public class Account {
 
     public double getBalance() {
         return balance;
+    }
+
+    public double getDebt() {
+        return debt;
     }
 }

@@ -36,7 +36,7 @@ public class LoanService {
 
     private void validateLoanData(Account account, double amount) {
         if (amount <= 0) {
-            throw new LoanException("Błąd: Kwota pożyczki musi być większa niż 0 zł");
+            throw new LoanException("Odmowa: Kwota pożyczki musi być większa niż 0 zł");
         }
 
         if (account.getDebt() > MAX_DEBT_FOR_LOAN) {

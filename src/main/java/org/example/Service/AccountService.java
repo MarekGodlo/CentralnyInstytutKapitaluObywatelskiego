@@ -11,10 +11,11 @@ import java.util.UUID;
 
 public class AccountService {
     private Account currentAccount;
-    private final Cryptography crypto = new Cryptography();
+    private final Cryptography crypto;
     private final AccountRepository repository;
 
-    public AccountService(AccountRepository repository) {
+    public AccountService(Cryptography crypto, AccountRepository repository) {
+        this.crypto = crypto;
         this.repository = repository;
     }
 
@@ -22,10 +23,6 @@ public class AccountService {
         return repository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));
     }
-
-//    public void showBalance() {
-//        System.out.println("Stan konta: " +  currentAccount.getBalance());
-//    }
 
     public Account findAccountByUsername(String name) {
         return repository.findByName(name)

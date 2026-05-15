@@ -2,7 +2,11 @@ package org.example.Utils;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
 public class Cryptography {
-    Argon2PasswordEncoder argon = new Argon2PasswordEncoder(16,32,1,60000,10);
+    Argon2PasswordEncoder argon;
+
+    public Cryptography(Argon2PasswordEncoder argon) {
+        this.argon = argon;
+    }
 
     public String hash(String password) {
        return argon.encode(password);

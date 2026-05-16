@@ -48,6 +48,10 @@ public class AccountService {
         repository.save(acc);
     }
 
+    public Account getCurrentAccount() {
+        return currentAccount;
+    }
+
     public void logout() {
         currentAccount = null;
     }
@@ -64,9 +68,5 @@ public class AccountService {
         if (repository.existsByName(username))  {
             throw new RegistrationException("Konto już istnieje");
         }
-    }
-
-    public Account getCurrentAccount() {
-        return currentAccount;
     }
 }

@@ -25,6 +25,10 @@ public class Account {
         balance -= amount;
     }
 
+    public void repayDebt(double amount) {
+        debt -= amount;
+    }
+
     public void increaseDebt(double debtValue) {
         debt += debtValue;
     }

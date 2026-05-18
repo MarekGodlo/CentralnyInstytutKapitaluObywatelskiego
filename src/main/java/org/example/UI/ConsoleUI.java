@@ -25,6 +25,7 @@ public class ConsoleUI {
     public void start() {
         boolean isRunning = true;
 
+
         System.out.println("=================== Bank ===================");
 
         while (isRunning) {

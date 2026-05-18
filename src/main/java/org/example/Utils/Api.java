@@ -1,4 +1,5 @@
 package org.example.Utils;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.example.Model.Account;
 
@@ -14,9 +15,9 @@ public class Api {
 
     private static  final String ACCOUNT_API_URL = "http://localhost:3000/api/accounts/";
 
-    private static final String LOAN_API_URL = "http://localhost:3000/api/loan";
+    private static final String LOAN_API_URL = "http://localhost:3000/api/loan/";
 
-    private static final String TRANSACTION_API_URL = "http://localhost:3000/api/transaction";
+    private static final String TRANSACTION_API_URL = "http://localhost:3000/api/transaction/";
     private static final HttpClient client = HttpClient.newHttpClient();
     private static final ObjectMapper mapper = new ObjectMapper();
 
@@ -39,8 +40,30 @@ public class Api {
         }
     }
 
+    public List<Account> getAllAccounts()  {
+        try {
+            HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(ACCOUNT_API_URL))
+                    .header("Accept", "application/json")
+                    .GET()
+                    .build();
 
+            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
+            if (response.statusCode() == 200) {
+                String responseBody = response.body();
+                return mapper.readValue(responseBody, new TypeReference<List<Account>>() {});
+            } else if (response.statusCode() == 404) {
+                System.out.println("Not found accounts in database.");
+            } else {
+                System.out.println("Failed to fetch accounts from database. Status code: " + response.statusCode());
+            }
+            return List.of();
+        } catch (IOException | InterruptedException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Failed get accounts from database");
+        }
+        return List.of();
 
-
+    }
 }

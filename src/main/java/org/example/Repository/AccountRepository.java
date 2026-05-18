@@ -9,7 +9,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 public class AccountRepository {
-    private final List<Account> accounts = new ArrayList<>();
+    private List<Account> accounts = new ArrayList<>();
     private final Api api;
 
     public AccountRepository(Api api) {
@@ -21,6 +21,10 @@ public class AccountRepository {
             accounts.add(account);
         }
         api.saveAccount(account);
+    }
+
+    public void syncAccounts() {
+        accounts = api.getAllAccounts();
     }
 
 

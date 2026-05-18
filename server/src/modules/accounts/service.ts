@@ -29,4 +29,8 @@ export abstract class AccountService {
             })
         }
     }
+
+    static async getAllAccounts() {
+        return prisma.accounts.findMany();
+    }
 }

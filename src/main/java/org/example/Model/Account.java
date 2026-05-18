@@ -3,9 +3,9 @@ package org.example.Model;
 import java.util.UUID;
 
 public class Account {
-    private final UUID id;
-    private final String username;
-    private final String password;
+    private  UUID id;
+    private  String username;
+    private  String password;
     private double balance;
     private double debt;
 
@@ -16,6 +16,8 @@ public class Account {
         this.balance = balance;
         this.debt = debt;
     }
+
+    public Account() {}
 
     public void deposit(double amount) {
         balance += amount;

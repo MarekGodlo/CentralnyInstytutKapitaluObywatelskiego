@@ -25,6 +25,7 @@ public class Main {
         Cryptography crypto = new Cryptography(argon2PasswordEncoder);
 
         AccountRepository accountRepository = new AccountRepository(api);
+        accountRepository.syncAccounts();
         TransactionRepository transactionRepository = new TransactionRepository();
         LoanRepository loanRepository = new LoanRepository();
 

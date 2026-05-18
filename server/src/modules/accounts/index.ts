@@ -17,3 +17,18 @@ export const accounts = new Elysia({ prefix: "/accounts" })
     }, {
         body: accountModel.accountBody
     })
+
+
+    .get('/', async ({}) => {
+        try {
+            const accounts = await AccountService.getAllAccounts();
+            return status(200, accounts)
+        } catch (e) {
+            console.error(e);
+            return status(500)
+        }
+    }, {
+        response: {
+            201: accountModel.accountResponse
+        }
+    })

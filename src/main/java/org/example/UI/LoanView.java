@@ -26,11 +26,11 @@ public class LoanView {
 
         System.out.println("Czy chcesz wziąć pożyczkę? Y/N");
 
-        String choice = scanner.nextLine();
+        String choice = scanner.nextLine().toLowerCase();
 
         switch (choice) {
-            case "Y" -> handleMakingLoad();
-            case "N" -> {}
+            case "y" -> handleMakingLoad();
+            case "n" -> {}
             default -> System.out.println("Niepoprawny format danych");
         }
     }
@@ -91,17 +91,18 @@ public class LoanView {
         System.out.println("Rata pożyczki wynosi: " + repayment);
         System.out.println("Czy chesz spłacić ratę? Y/N");
 
-        String choice = scanner.nextLine();
+        String choice = scanner.nextLine().toLowerCase();
+
 
         switch (choice) {
-            case "Y" -> {
+            case "y" -> {
                 try {
                     loanService.repayLoan(loan);
                 } catch (LoanException e) {
                     System.out.println(e.getMessage());
                 }
             }
-            case "N" -> {}
+            case "n" -> {}
             default -> System.out.println("Niepoprawny format danych");
         }
 

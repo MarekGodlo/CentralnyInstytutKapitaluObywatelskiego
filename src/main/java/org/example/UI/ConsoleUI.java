@@ -100,7 +100,7 @@ public class ConsoleUI {
 
             System.out.println("Wybierz opcje");
             System.out.println("1. Zrób przelew");
-            System.out.println("2. Weźni pożyczkę");
+            System.out.println("2. Weź pożyczkę");
             System.out.println("3. Spłać pożyczkę");
             System.out.println("4. Zobacz stan konta");
             System.out.println("5. Wyloguj się");

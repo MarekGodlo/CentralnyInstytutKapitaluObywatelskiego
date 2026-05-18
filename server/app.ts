@@ -2,6 +2,7 @@ import { Elysia,t } from 'elysia'
 import { cors } from '@elysiajs/cors'
 import {accounts} from "./src/modules/accounts";
 import {loans} from "./src/modules/loans";
+import {transactions} from "./src/modules/transactions";
 
 
 const app = new Elysia({
@@ -11,6 +12,7 @@ const app = new Elysia({
     .use(cors())
     .use(accounts)
     .use(loans)
+    .use(transactions)
 
 
 app.listen(3000)

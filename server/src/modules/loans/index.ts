@@ -29,6 +29,6 @@ export const loans = new Elysia({ prefix: "/loans" })
         }
     }, {
         response: {
-            200: loanModel.loanResponse
+            201: loanModel.loanResponse
         }
     })

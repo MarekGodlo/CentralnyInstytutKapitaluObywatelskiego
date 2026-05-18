@@ -113,7 +113,6 @@ public class LoanView {
         System.out.println("Kwota pożyczki: " + loan.getOriginalAmount() + "zł");
         System.out.println("Pozostało: " + loan.getRemainingAmount() + "zł");
         System.out.println("Stopa procentowa: " + (loan.getInterestRate()*100) + "%");
-        System.out.println("Data utworzenia: " + loan.getCreateDate());
         System.out.println("Liczba miesięcy do spłaty: " + loan.getRepaymentMonths() );
     }
 }

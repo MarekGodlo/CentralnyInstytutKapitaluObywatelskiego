@@ -27,7 +27,8 @@ public class Main {
         AccountRepository accountRepository = new AccountRepository(api);
         accountRepository.syncAccounts();
         TransactionRepository transactionRepository = new TransactionRepository();
-        LoanRepository loanRepository = new LoanRepository();
+        LoanRepository loanRepository = new LoanRepository(api);
+        loanRepository.syncLoans();
 
         AccountService accountService = new AccountService(crypto, accountRepository);
         TransactionService transactionService = new TransactionService(transactionRepository,  accountService);

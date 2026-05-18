@@ -4,14 +4,16 @@ import java.time.LocalDate;
 import java.util.UUID;
 
 public class Loan {
-    private final UUID id;
-    private final UUID accountId;
-    private final double originalAmount;
+    private UUID id;
+    private UUID accountId;
+    private double originalAmount;
     private double remainingAmount;
-    private final double interestRate;
+    private double interestRate;
     private int repaymentMonths;
-    private final LocalDate createDate;
-    private boolean isActive;
+
+    private boolean active;
+
+    public Loan() {}
 
     public Loan(UUID accountId, double originalAmount, double remainingAmount, double interestRate, int repaymentMonths) {
         this.id = UUID.randomUUID();
@@ -20,8 +22,7 @@ public class Loan {
         this.remainingAmount = remainingAmount;
         this.interestRate = interestRate;
         this.repaymentMonths = repaymentMonths;
-        this.createDate = LocalDate.now();
-        this.isActive = true;
+        this.active = true;
     }
 
     public void repay(double amount) {
@@ -37,7 +38,7 @@ public class Loan {
     }
 
     public void close() {
-        isActive = false;
+        active = false;
     }
 
     public UUID getId() {
@@ -64,12 +65,7 @@ public class Loan {
         return repaymentMonths;
     }
 
-    public LocalDate getCreateDate() {
-        return createDate;
-    }
-
-
     public boolean isActive() {
-        return isActive;
+        return active;
     }
 }

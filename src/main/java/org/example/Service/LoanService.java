@@ -33,8 +33,7 @@ public class LoanService {
 
         Loan loan = new Loan(currentAcc.getId(), amount, amount, INTEREST_RATE, REPAYMENT_MONTHS);
         loanRepository.save(loan);
-
-        // save to db logic
+        accountService.save(currentAcc);
     }
 
     public void repayLoan(Loan loan) {
@@ -72,7 +71,7 @@ public class LoanService {
         if (loan.isRepaid()) loan.close();
 
         loanRepository.save(loan);
-        // save to db logic
+        accountService.save(account);
     }
 
 

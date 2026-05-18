@@ -56,8 +56,7 @@ model Loan {
   remainingAmount Float
   interestRate    Float
   repaymentMonths Int
-  createDate      DateTime @default(now())
-  isActive        Boolean  @default(true)
+  active        Boolean  @default(true)
 
   account Accounts @relation(fields: [accountId], references: [id])
 }

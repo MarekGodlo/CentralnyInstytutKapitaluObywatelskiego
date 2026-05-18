@@ -29,6 +29,10 @@ public class AccountService {
                 .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));
     }
 
+    public void save(Account account) {
+        repository.save(account);
+    }
+
     public void login(String username, String password) {
         Account acc = repository.findByName(username)
                 .orElseThrow(() -> new AuthenticationException("Niepoprawna nazwa użytkownika lub hasło"));

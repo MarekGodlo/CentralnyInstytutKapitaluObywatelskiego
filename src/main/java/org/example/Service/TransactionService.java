@@ -39,7 +39,7 @@ public class TransactionService {
         receiver.deposit(amount);
 
         repository.save(new Transaction(senderId, receiverId, amount));
-
-        // save to db logic
+        accountService.save(sender);
+        accountService.save(receiver);
     }
 }

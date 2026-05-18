@@ -26,7 +26,7 @@ public class Loan {
     }
 
     public void repay(double amount) {
-        remainingAmount -= amount;
+        remainingAmount = Math.round((remainingAmount - amount) * 100.0) / 100.0;
     }
 
     public void decrementMonths() {

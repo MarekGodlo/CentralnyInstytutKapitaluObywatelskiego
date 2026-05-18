@@ -20,19 +20,19 @@ public class Account {
     public Account() {}
 
     public void deposit(double amount) {
-        balance += amount;
+        balance = Math.round((balance + amount) * 100.0) / 100.0;
     }
 
     public void withdraw(double amount) {
-        balance -= amount;
+        balance = Math.round((balance - amount) * 100.0) / 100.0;
     }
 
     public void repayDebt(double amount) {
-        debt -= amount;
+        debt = Math.round((debt - amount) * 100.0) / 100.0;
     }
 
     public void increaseDebt(double debtValue) {
-        debt += debtValue;
+        debt = Math.round((debt + debtValue) * 100.0) / 100.0;
     }
 
     public UUID getId() {

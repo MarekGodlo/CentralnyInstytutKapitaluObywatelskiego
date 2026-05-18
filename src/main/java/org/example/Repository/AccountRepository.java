@@ -1,6 +1,7 @@
 package org.example.Repository;
 
 import org.example.Model.Account;
+import org.example.Utils.Api;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +10,19 @@ import java.util.UUID;
 
 public class AccountRepository {
     private final List<Account> accounts = new ArrayList<>();
+    private final Api api;
+
+    public AccountRepository(Api api) {
+        this.api = api;
+    }
 
     public void save(Account account) {
-        // FIXME: It's temporary solution
         if (!accounts.contains(account)) {
             accounts.add(account);
         }
+        api.saveAccount(account);
     }
+
 
     public Optional<Account> findById(UUID id) {
         return accounts.stream()

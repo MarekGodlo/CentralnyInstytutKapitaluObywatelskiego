@@ -10,6 +10,7 @@ import org.example.UI.AccountView;
 import org.example.UI.ConsoleUI;
 import org.example.UI.LoanView;
 import org.example.UI.TransactionView;
+import org.example.Utils.Api;
 import org.example.Utils.Cryptography;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 
@@ -18,11 +19,12 @@ import java.util.Scanner;
 public class Main {
     static void main() {
         Scanner scanner = new Scanner(System.in);
+        Api api = new Api();
 
         Argon2PasswordEncoder argon2PasswordEncoder = new Argon2PasswordEncoder(16, 32, 1, 60000, 10);
         Cryptography crypto = new Cryptography(argon2PasswordEncoder);
 
-        AccountRepository accountRepository = new AccountRepository();
+        AccountRepository accountRepository = new AccountRepository(api);
         TransactionRepository transactionRepository = new TransactionRepository();
         LoanRepository loanRepository = new LoanRepository();
 

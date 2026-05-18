@@ -15,15 +15,15 @@ Otwórz terminal w folderze `server` i wykonaj następujące komendy:
 
 1.  **Instalacja zależności:**
     ```bash
-    npm install
+    bunx install
     ```
 2.  **Inicjalizacja Prisma:**
     ```bash
-    npx prisma init
+    bunx prisma init
     ```
 
 #### Krok 3: Przygotowanie schematu Prisma
-Upewnij się, że w pliku `server/prisma/schema.prisma` znajduje się poniższa treść (spójna z modelami Java):
+Upewnij się, że w pliku `server/prisma/schema.prisma` znajduje się poniższa treść:
 
 ```prisma
 // server/prisma/schema.prisma
@@ -77,17 +77,17 @@ model Transaction {
 
 3.  **Wykonanie migracji:**
     ```bash
-    npx prisma migrate dev --name init_schema
+    bunx prisma migrate dev --name init_schema
     ```
 
 4. **Generowanie klienta Prisma:**
     ```bash
-    npx prisma generate
+    bunx prisma generate
     ```
 
 #### Krok 4: Uruchomienie serwera
 Aby uruchomić serwer w trybie deweloperskim:
 ```bash
-npm start
+bunx start
 ```
 ---

@@ -7,6 +7,8 @@ import org.example.Model.Transaction;
 import org.example.Repository.AccountRepository;
 import org.example.Repository.TransactionRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class TransactionService {
@@ -41,5 +43,15 @@ public class TransactionService {
         repository.save(new Transaction(senderId, receiverId, amount));
         accountService.save(sender);
         accountService.save(receiver);
+    }
+
+    public List<Transaction> getHistoryForCurrentAccount() {
+        UUID currentId = accountService.getCurrentAccount().getId();
+        List<Transaction> history = new ArrayList<>();
+
+        history.addAll(repository.getTransactionBySenderId(currentId));
+        history.addAll(repository.getTransactionByReceiverId(currentId));
+
+        return history;
     }
 }

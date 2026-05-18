@@ -2,6 +2,7 @@ package org.example.UI;
 
 import org.example.Exception.*;
 import org.example.Service.AccountService;
+import org.example.Service.TransactionService;
 
 import java.util.Scanner;
 
@@ -10,13 +11,16 @@ public class ConsoleUI {
 
     private final AccountService accountService;
 
+    private final TransactionService transactionService;
+
     private final AccountView accountView;
     private final TransactionView transactionView;
     private final LoanView  loanView;
 
-    public ConsoleUI(Scanner scanner, AccountService accountService, AccountView accountView, TransactionView transactionView, LoanView loanView) {
+    public ConsoleUI(Scanner scanner, AccountService accountService, AccountView accountView, TransactionView transactionView, LoanView loanView,TransactionService transactionService) {
         this.scanner = scanner;
         this.accountService = accountService;
+        this.transactionService = transactionService;
         this.transactionView = transactionView;
         this.accountView = accountView;
         this.loanView = loanView;
@@ -104,7 +108,8 @@ public class ConsoleUI {
             System.out.println("2. Weź pożyczkę");
             System.out.println("3. Spłać pożyczkę");
             System.out.println("4. Zobacz stan konta");
-            System.out.println("5. Wyloguj się");
+            System.out.println("5. Zobacz historie operacji");
+            System.out.println("6. Wyloguj się");
 
             String choice = scanner.nextLine();
 
@@ -113,7 +118,11 @@ public class ConsoleUI {
                 case "2" -> loanView.displayMakingLoanMenu(accountService.getCurrentAccount());
                 case "3" -> loanView.displayRepayingLoanMenu(accountService.getCurrentAccount());
                 case "4" -> accountView.displayAccountStatus(accountService.getCurrentAccount());
-                case "5" -> isLoggedIn = false;
+                case "5" -> {
+                    AccountOperationsHistory view = new AccountOperationsHistory();
+                    view.showOperationsHistory(accountService.getCurrentAccount(), transactionService.getHistoryForCurrentAccount(), accountService.getAccountRepository());
+                }
+                case "6" -> isLoggedIn = false;
                 default -> {
                     System.out.println("Nieznana komenda");
                 }

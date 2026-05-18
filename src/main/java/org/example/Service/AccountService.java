@@ -19,6 +19,10 @@ public class AccountService {
         this.repository = repository;
     }
 
+    public AccountRepository getAccountRepository() {
+        return repository;
+    }
+
     public Account findAccountById(UUID id) {
         return repository.findById(id)
                 .orElseThrow(() -> new AccountNotFoundException("Konto nie istnieje"));

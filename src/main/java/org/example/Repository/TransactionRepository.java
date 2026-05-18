@@ -5,6 +5,7 @@ import org.example.Utils.Api;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class TransactionRepository {
     private List<Transaction> transactions = new ArrayList<>();
@@ -24,4 +25,18 @@ public class TransactionRepository {
     public void syncTransactions() {
         transactions = api.getAllTransactions();
     }
+
+    public List<Transaction> getTransactionBySenderId(UUID id) {
+        return transactions.stream()
+                .filter(transaction -> transaction.getSenderId().equals(id))
+                .toList();
+    }
+
+    public List<Transaction> getTransactionByReceiverId(UUID id) {
+        return transactions.stream()
+                .filter(transaction -> transaction.getReceiverId().equals(id))
+                .toList();
+    }
+
+
 }

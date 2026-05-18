@@ -39,6 +39,6 @@ public class Main {
         TransactionView transactionView = new TransactionView(scanner, transactionService);
         LoanView loanView = new LoanView(scanner, loanService, accountView);
 
-        new ConsoleUI(scanner, accountService, accountView, transactionView, loanView).start();
+        new ConsoleUI(scanner, accountService, accountView, transactionView, loanView, transactionService).start();
     }
 }

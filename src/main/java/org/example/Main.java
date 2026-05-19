@@ -6,10 +6,7 @@ import org.example.Repository.TransactionRepository;
 import org.example.Service.AccountService;
 import org.example.Service.LoanService;
 import org.example.Service.TransactionService;
-import org.example.UI.AccountView;
-import org.example.UI.ConsoleUI;
-import org.example.UI.LoanView;
-import org.example.UI.TransactionView;
+import org.example.UI.*;
 import org.example.Utils.Api;
 import org.example.Utils.Cryptography;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
@@ -38,7 +35,8 @@ public class Main {
         AccountView accountView = new AccountView();
         TransactionView transactionView = new TransactionView(scanner, transactionService);
         LoanView loanView = new LoanView(scanner, loanService, accountView);
+        AccountOperationsHistory view = new AccountOperationsHistory();
 
-        new ConsoleUI(scanner, accountService, accountView, transactionView, loanView, transactionService).start();
+        new ConsoleUI(scanner, accountService, accountView, transactionView, loanView, transactionService,view).start();
     }
 }

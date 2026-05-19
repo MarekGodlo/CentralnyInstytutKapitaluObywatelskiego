@@ -76,7 +76,6 @@ public class Api {
                     .POST(HttpRequest.BodyPublishers.ofString(requestBody))
                     .build();
 
-            System.out.println(requestBody);
 
             HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
             if (response.statusCode() != 200) {

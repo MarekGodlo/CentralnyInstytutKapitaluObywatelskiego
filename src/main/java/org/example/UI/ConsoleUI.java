@@ -16,9 +16,11 @@ public class ConsoleUI {
     private final AccountView accountView;
     private final TransactionView transactionView;
     private final LoanView  loanView;
+    private final AccountOperationsHistory view;
 
-    public ConsoleUI(Scanner scanner, AccountService accountService, AccountView accountView, TransactionView transactionView, LoanView loanView,TransactionService transactionService) {
+    public ConsoleUI(Scanner scanner, AccountService accountService, AccountView accountView, TransactionView transactionView, LoanView loanView,TransactionService transactionService,  AccountOperationsHistory view) {
         this.scanner = scanner;
+        this.view = view;
         this.accountService = accountService;
         this.transactionService = transactionService;
         this.transactionView = transactionView;
@@ -118,10 +120,7 @@ public class ConsoleUI {
                 case "2" -> loanView.displayMakingLoanMenu(accountService.getCurrentAccount());
                 case "3" -> loanView.displayRepayingLoanMenu(accountService.getCurrentAccount());
                 case "4" -> accountView.displayAccountStatus(accountService.getCurrentAccount());
-                case "5" -> {
-                    AccountOperationsHistory view = new AccountOperationsHistory();
-                    view.showOperationsHistory(accountService.getCurrentAccount(), transactionService.getHistoryForCurrentAccount(), accountService.getAccountRepository());
-                }
+                case "5" -> view.showOperationsHistory(accountService.getCurrentAccount(), transactionService.getHistoryForCurrentAccount(), accountService.getAccountRepository());
                 case "6" -> isLoggedIn = false;
                 default -> {
                     System.out.println("Nieznana komenda");

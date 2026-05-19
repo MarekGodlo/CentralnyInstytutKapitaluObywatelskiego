@@ -6,7 +6,6 @@ import org.example.Model.Loan;
 import org.example.Repository.LoanRepository;
 
 import java.util.List;
-import java.util.UUID;
 
 public class LoanService {
     private static final int REPAYMENT_MONTHS = 12;

@@ -2,6 +2,7 @@ package org.example.Service;
 
 import org.example.Exception.AuthenticationException;
 import org.example.Exception.RegistrationException;
+import org.example.Model.AccountType;
 import org.example.Repository.AccountRepository;
 import org.example.Exception.AccountNotFoundException;
 import org.example.Model.Account;
@@ -48,9 +49,9 @@ public class AccountService {
         currentAccount = acc;
     }
 
-    public void register(String username, String password) {
+    public void register(String username, String password, AccountType type) {
         validateRegistrationData(username, password);
-        Account acc = new Account(username, crypto.hash(password), 0,0);
+        Account acc = new Account(username, crypto.hash(password), 0,0, type);
         currentAccount = acc;
 
         repository.save(acc);

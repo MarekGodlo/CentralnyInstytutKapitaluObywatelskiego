@@ -1,9 +1,11 @@
 package org.example.UI;
 
 import org.example.Exception.*;
+import org.example.Model.AccountType;
 import org.example.Service.AccountService;
 import org.example.Service.TransactionService;
 
+import java.util.Optional;
 import java.util.Scanner;
 
 public class ConsoleUI {
@@ -76,23 +78,49 @@ public class ConsoleUI {
         }
     }
 
-    private void handleRegistration() {
+    private AccountType handleChooseAccountType() {
         System.out.println();
+        System.out.println("Wybierz typ konta:");
+        System.out.println("1. Normalne");
+        System.out.println("2. Studenckie");
+        System.out.println("3. Firmowe");
 
-        System.out.println("Podaj nazwę użytkownika");
-        String username = scanner.nextLine();
+        String choice = scanner.nextLine();
+        switch (choice) {
+            case "1" -> {
+                return AccountType.NORMAL;
+            }
+            case "2" -> {
+                return AccountType.STUDENT;
+            }
+            case "3" -> {
+                return AccountType.BUSINESS;
+            }
+            default -> {
+                throw new InvalidAccountType("Wybrano niepoprawny rodzaj");
+            }
+        }
 
-        System.out.println("Podaj hasło użytkownika");
-        String password = scanner.nextLine();
+    }
 
+    private void handleRegistration() {
         try {
-            accountService.register(username, password);
+            System.out.println();
+            AccountType type = handleChooseAccountType();
+
+            System.out.println("Podaj nazwę użytkownika");
+            String username = scanner.nextLine();
+
+            System.out.println("Podaj hasło użytkownika");
+            String password = scanner.nextLine();
+
+            accountService.register(username, password, type);
             System.out.println("Pomyślnie zarejestrowano");
 
             displayCustomerMenu();
 
             accountService.logout();
-        } catch (RegistrationException e){
+        } catch (RegistrationException | InvalidAccountType e){
             System.out.println(e.getMessage());
         }
     }

@@ -8,9 +8,11 @@ public class Account {
     private  String password;
     private double balance;
     private double debt;
+    private AccountType type;
 
-    public Account(String userName, String password, double balance, double debt) {
+    public Account(String userName, String password, double balance, double debt, AccountType type) {
         id = UUID.randomUUID();
+        this.type = type;
         this.username = userName;
         this.password = password;
         this.balance = balance;
@@ -53,5 +55,13 @@ public class Account {
 
     public double getDebt() {
         return debt;
+    }
+
+    public AccountType getType() {
+        return type;
+    }
+
+    public void setType(AccountType type) {
+        this.type = type;
     }
 }

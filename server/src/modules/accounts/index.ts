@@ -7,8 +7,8 @@ export const accounts = new Elysia({ prefix: "/accounts" })
 
     .post('/', async ({body}) => {
         try {
-            const {id,username,password,balance,debt} = body;
-            await AccountService.createOrUpdateAccount(id,username,password,balance,debt);
+            const {id,username,password,balance,debt, type} = body;
+            await AccountService.createOrUpdateAccount(id,username,password,balance,debt, type);
             return status(200)
         } catch (e) {
             console.error(e);

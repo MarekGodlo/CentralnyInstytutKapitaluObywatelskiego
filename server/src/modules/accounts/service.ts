@@ -1,6 +1,6 @@
 import {prisma} from "../../lib/prisma";
 export abstract class AccountService {
-    static async createOrUpdateAccount(id: string, username: string, password: string, balance: number, debt : number) : Promise<void> {
+    static async createOrUpdateAccount(id: string, username: string, password: string, balance: number, debt : number, type: any) : Promise<void> {
         const account =  await prisma.accounts.findFirst({
             where: {
                 id: id
@@ -14,7 +14,8 @@ export abstract class AccountService {
                     username: username,
                     password: password,
                     balance: balance,
-                    debt: debt
+                    debt: debt,
+                    type: type
                 }
             })
         } else {

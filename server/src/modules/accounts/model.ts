@@ -1,5 +1,6 @@
 import {t} from "elysia";
 
+
 export const accountModel = {
 
     accountBody: t.Object({
@@ -7,7 +8,8 @@ export const accountModel = {
         username: t.String(),
         password: t.String(),
         balance: t.Number(),
-        debt: t.Number()
+        debt: t.Number(),
+        type: t.String()
     }),
 
     accountResponse: t.Optional(

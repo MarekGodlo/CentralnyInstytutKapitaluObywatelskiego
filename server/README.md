@@ -15,7 +15,7 @@ Otwórz terminal w folderze `server` i wykonaj następujące komendy:
 
 1.  **Instalacja zależności:**
     ```bash
-    bunx install
+    bun install
     ```
 2.  **Inicjalizacja Prisma:**
     ```bash
@@ -66,7 +66,6 @@ model Transaction {
   senderId   String
   receiverId String
   amount     Float
-  date       DateTime @default(now())
 
   sender   Accounts @relation("SentTransactions", fields: [senderId], references: [id])
   receiver Accounts @relation("ReceivedTransactions", fields: [receiverId], references: [id])
@@ -87,6 +86,6 @@ model Transaction {
 #### Krok 4: Uruchomienie serwera
 Aby uruchomić serwer w trybie deweloperskim:
 ```bash
-bunx start
+bun run dev
 ```
 ---

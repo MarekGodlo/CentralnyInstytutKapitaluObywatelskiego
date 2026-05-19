@@ -42,26 +42,20 @@ public class Api {
         }
     }
 
-    public List<Account> getAllAccounts()  {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(ACCOUNT_API_URL))
-                    .header("Accept", "application/json")
-                    .GET()
-                    .build();
+    public List<Account> getAllAccounts() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(ACCOUNT_API_URL))
+                .header("Accept", "application/json")
+                .GET()
+                .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
-                String responseBody = response.body();
-                return mapper.readValue(responseBody, new TypeReference<List<Account>>() {});
-            } else {
-                System.out.println("Failed to fetch accounts from database. Status code: " + response.statusCode());
-            }
-            return List.of();
-        } catch (IOException | InterruptedException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed get accounts from database");
+        if (response.statusCode() == 200) {
+            String responseBody = response.body();
+            return mapper.readValue(responseBody, new TypeReference<List<Account>>() {});
+        } else {
+            System.out.println("Failed to fetch accounts from database. Status code: " + response.statusCode());
         }
         return List.of();
 
@@ -88,28 +82,23 @@ public class Api {
         }
     }
 
-    public List<Loan> getAllLoans() {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(LOAN_API_URL))
-                    .header("Accept", "application/json")
-                    .GET()
-                    .build();
+    public List<Loan> getAllLoans() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(LOAN_API_URL))
+                .header("Accept", "application/json")
+                .GET()
+                .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
-                String responseBody = response.body();
-                return mapper.readValue(responseBody, new TypeReference<List<Loan>>() {});
-            } else {
-                System.out.println("Failed to fetch loans from database. Status code: " + response.statusCode());
-            }
-            return List.of();
-        } catch (IOException | InterruptedException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed get loans from database");
+        if (response.statusCode() == 200) {
+            String responseBody = response.body();
+            return mapper.readValue(responseBody, new TypeReference<List<Loan>>() {});
+        } else {
+            System.out.println("Failed to fetch loans from database. Status code: " + response.statusCode());
         }
         return List.of();
+
     }
 
     public void saveTransaction(Transaction transaction) {
@@ -132,26 +121,20 @@ public class Api {
         }
     }
 
-    public List<Transaction> getAllTransactions() {
-        try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(TRANSACTION_API_URL))
-                    .header("Accept", "application/json")
-                    .GET()
-                    .build();
+    public List<Transaction> getAllTransactions() throws IOException, InterruptedException {
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(TRANSACTION_API_URL))
+                .header("Accept", "application/json")
+                .GET()
+                .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            if (response.statusCode() == 200) {
-                String responseBody = response.body();
-                return mapper.readValue(responseBody, new TypeReference<List<Transaction>>() {});
-            } else {
-                System.out.println("Failed to fetch transactions from database. Status code: " + response.statusCode());
-            }
-            return List.of();
-        } catch (IOException | InterruptedException e) {
-            System.out.println(e.getMessage());
-            System.out.println("Failed get transactions from database");
+        if (response.statusCode() == 200) {
+            String responseBody = response.body();
+            return mapper.readValue(responseBody, new TypeReference<List<Transaction>>() {});
+        } else {
+            System.out.println("Failed to fetch transactions from database. Status code: " + response.statusCode());
         }
         return List.of();
     }

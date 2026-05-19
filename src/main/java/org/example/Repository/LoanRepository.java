@@ -3,6 +3,7 @@ package org.example.Repository;
 import org.example.Model.Loan;
 import org.example.Utils.Api;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +23,7 @@ public class LoanRepository {
         api.saveLoan(loan);
     }
 
-    public void syncLoans() {
+    public void syncLoans() throws InterruptedException, IOException {
         loans = api.getAllLoans();
     }
 

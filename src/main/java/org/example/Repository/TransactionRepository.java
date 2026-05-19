@@ -3,6 +3,7 @@ package org.example.Repository;
 import org.example.Model.Transaction;
 import org.example.Utils.Api;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -22,7 +23,7 @@ public class TransactionRepository {
         api.saveTransaction(transaction);
     }
 
-    public void syncTransactions() {
+    public void syncTransactions()  throws InterruptedException, IOException {
         transactions = api.getAllTransactions();
     }
 

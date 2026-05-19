@@ -3,10 +3,12 @@ package org.example.Repository;
 import org.example.Model.Account;
 import org.example.Utils.Api;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.ExecutionException;
 
 public class AccountRepository {
     private List<Account> accounts = new ArrayList<>();
@@ -23,7 +25,7 @@ public class AccountRepository {
         api.saveAccount(account);
     }
 
-    public void syncAccounts() {
+    public void syncAccounts() throws InterruptedException, IOException {
         accounts = api.getAllAccounts();
     }
 

@@ -19,10 +19,12 @@ public class ConsoleUI {
     private final TransactionView transactionView;
     private final LoanView  loanView;
     private final AccountOperationsHistory view;
+    private final AccountInfo accountInfo;
 
-    public ConsoleUI(Scanner scanner, AccountService accountService, AccountView accountView, TransactionView transactionView, LoanView loanView,TransactionService transactionService,  AccountOperationsHistory view) {
+    public ConsoleUI(Scanner scanner, AccountService accountService, AccountView accountView, TransactionView transactionView, LoanView loanView,TransactionService transactionService,  AccountOperationsHistory view, AccountInfo accountInfo) {
         this.scanner = scanner;
         this.view = view;
+        this.accountInfo = accountInfo;
         this.accountService = accountService;
         this.transactionService = transactionService;
         this.transactionView = transactionView;
@@ -139,7 +141,8 @@ public class ConsoleUI {
             System.out.println("3. Spłać pożyczkę");
             System.out.println("4. Zobacz stan konta");
             System.out.println("5. Zobacz historie operacji");
-            System.out.println("6. Wyloguj się");
+            System.out.println("6. Zobacz limity konta");
+            System.out.println("7. Wyloguj się");
 
             String choice = scanner.nextLine();
 
@@ -149,7 +152,8 @@ public class ConsoleUI {
                 case "3" -> loanView.displayRepayingLoanMenu(accountService.getCurrentAccount());
                 case "4" -> accountView.displayAccountStatus(accountService.getCurrentAccount());
                 case "5" -> view.showOperationsHistory(accountService.getCurrentAccount(), transactionService.getHistoryForCurrentAccount(), accountService.getAccountRepository());
-                case "6" -> isLoggedIn = false;
+                case "6" -> accountInfo.showAccountType(accountService.getCurrentAccount());
+                case "7" -> isLoggedIn = false;
                 default -> {
                     System.out.println("Nieznana komenda");
                 }

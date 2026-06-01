@@ -1,6 +1,7 @@
 package org.example.UI;
 
 import org.example.Model.Account;
+import org.example.Model.AccountType;
 import org.example.Model.Transaction;
 import org.example.Repository.AccountRepository;
 
@@ -15,6 +16,7 @@ public class AccountOperationsHistory {
         } else {
             for (Transaction t : transactions) {
                 boolean isSender = t.getSenderId().equals(currentAccount.getId());
+                double tax = (currentAccount.getType() == AccountType.STUDENT) ? 0.00 : 0.05;
                 String partyName;
                 String type;
                 String amountStr;
@@ -30,7 +32,9 @@ public class AccountOperationsHistory {
                     type = "PRZELEW OD: ";
                     amountStr = "+" + t.getAmount();
                 }
-                System.out.println(type + partyName + " | KWOTA: " + amountStr + " PLN");
+
+                String taxInfo = isSender ? " | PROWIZJA: " + (t.getAmount() * tax) + " " : "";
+                System.out.println(type + partyName + " | KWOTA: " + amountStr + " PLN" + taxInfo);
             }
         }
         System.out.println("=========================================================");

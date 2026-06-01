@@ -37,8 +37,9 @@ public class Main {
             TransactionView transactionView = new TransactionView(scanner, transactionService);
             LoanView loanView = new LoanView(scanner, loanService, accountView);
             AccountOperationsHistory view = new AccountOperationsHistory();
+            AccountInfo accountInfo = new AccountInfo();
 
-            new ConsoleUI(scanner, accountService, accountView, transactionView, loanView, transactionService,view).start();
+            new ConsoleUI(scanner, accountService, accountView, transactionView, loanView, transactionService,view,accountInfo).start();
         } catch (IOException | InterruptedException e) {
             System.out.println("Nie udalo sie uruchomic aplikacji: " + e.getMessage());
         }
